@@ -3,6 +3,9 @@
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SpaController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\AboutController;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +44,12 @@ Route::get('/roomtype_test', function () {
 Route::resource('roomtypes', RoomTypeController::class);
 
 Route::resource('rooms', RoomController::class);
+
+Route::resource('spa', SpaController::class);
+
+Route::resource('restaurant', RestaurantController::class);
+
+Route::resource('about',AboutController::class);
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'login')->name('login');

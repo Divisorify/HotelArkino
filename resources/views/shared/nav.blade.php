@@ -11,13 +11,13 @@
                     <a class="nav-link" href="{{ route('rooms.index') }}">Rooms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="restaurant.html">Restaurant</a>
+                    <a class="nav-link" href="{{ route('restaurant.index') }}">Restaurant</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="spa.html">SPA&Wellness</a>
+                    <a class="nav-link" href="{{ route('spa.index') }}">SPA&Wellness</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="{{ route('about.index') }}">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#page-footer">Contact</a>
