@@ -8,7 +8,7 @@
   @include('shared.nav')
 
   <!--Karuzela-->
-  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" style="max-width: 1200px;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -18,27 +18,27 @@
         
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <img src={{asset('storage/img/room2.jpg')}} class="d-block w-100" alt="...">
+            <img src={{asset('storage/img/breakfast.jpg')}} class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h3>Feel free!</h3>
+                <h3>Delicious!</h3>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src={{asset('storage/img/room3.jpg')}} class="d-block w-100" alt="...">
+            <img src={{asset('storage/img/food.jpg')}} class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h3>Relax!</h3>
+                <h3>Tasty!</h3>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src={{asset('storage/img/hotel.jpg')}} class="d-block w-100" alt="...">
+            <img src={{asset('storage/img/food2.jpg')}} class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h3>Rest!</h3>
+                <h3>Flavorful!</h3>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src={{asset('storage/img/receptionists.jpg')}} class="d-block w-100" alt="...">
+            <img src={{asset('storage/img/grapes.jpg')}} class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h3>Call us!</h3>
+                <h3>Delectable!</h3>
             </div>
           </div>
         </div>
@@ -52,6 +52,67 @@
         </button>
       </div>
 
+      <div class="row">
+        <div class="card mb-3" id="restaurantcards">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{asset('storage/img/breakfast.jpg')}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Breakfast</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="{{ route('login') }}" class="btn btn-primary">Add to my reservation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3" id="restaurantcards">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{asset('storage/img/food.jpg')}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Dinner</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="{{ route('login') }}" class="btn btn-primary">Add to my reservation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card mb-3" id="restaurantcards">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{asset('storage/img/food2.jpg')}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Supper</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="{{ route('login') }}" class="btn btn-primary">Add to my reservation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3" id="restaurantcards">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{asset('storage/img/grapes.jpg')}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Dessert</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="{{ route('login') }}" class="btn btn-primary">Add to my reservation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
   @include('shared.footer')
 
