@@ -11,6 +11,7 @@
     <div class="card-header">
       {{$room->type}} ({{$room->persons}})
     </div>
+    <img src={{asset('storage/img/room'.$room->id.'.jpg')}} class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Beds {{$room->beds}}</h5>
       <p class="card-text">Area {{$room->area}} m<sup>2</sup></p>
