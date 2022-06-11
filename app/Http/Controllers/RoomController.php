@@ -16,12 +16,34 @@ class RoomController extends Controller
      */
 
 
-    public function index()
+    public function index(Request $request)
     {
         // Pobranie danych z bazy danych
         $rooms = Room::all();
         // Zwrócenie widoku(przekazujemy dane ze zmiennej $countries)
         return view('rooms.index', ['rooms' => $rooms]);
+
+        // if (!Gate::allows('find_room_access')) {
+        //     return abort(401);
+        // }
+        $time_from = $request->input('time_from');
+        $time_to = $request->input('time_to');
+
+
+        if ($request->isMethod('POST')) {
+              $rooms = Room::whereNotIn('id', function($query) use ($time_from, $time_to) {
+            $query->from('reservations')
+                ->select('room_id')
+                ->where('time_from', '<=', $time_to)
+                ->where('time_to', '>=', $time_from);
+        })->get();
+        } else {
+            $rooms = null;
+        }
+
+
+        return view('rooms.index', compact('rooms', 'time_from', 'time_to'));
+    
     }
 
     /**

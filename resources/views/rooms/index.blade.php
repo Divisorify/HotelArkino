@@ -6,6 +6,7 @@
 <body>
     @include('shared.nav')
 
+    
     <div class="row">
                 @forelse ($rooms as $room)
                     <div class="card mb-3" style="max-width: 740px;">
@@ -28,7 +29,7 @@
                         </div>
                     </div>
                 @endforeach
-</div>
+    </div>
 
     <div class="container">
         <h1>Choose your room</h1>
@@ -42,8 +43,8 @@
         <div class="container">
             <div class="row" style="max-width: 1620px">
                     <div class="col">
-                        <label for="date" class="form-label">Data zameldowania</label>
-                        <div class="input-group date" id="datepicker">
+                        <label for="date" class="form-label">Check-in Date</label>
+                        <div class="input-group date" id="datepicker" class="datepicker">
                             <input type="date" class="form-control" id="date"/></input>
                             <span class="input-group-append">
                             <!-- <span class="input-group-text bg-light d-block"> -->
@@ -52,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <label for="date" class="form-label">Data wymeldowania</label>
+                        <label for="date" class="form-label">Check-out Date</label>
                         <div class="input-group date" id="datepicker">
                             <input type="date" class="form-control" id="date"/></input>
                             <span class="input-group-append">
@@ -94,7 +95,7 @@
 
         <div class="row">
             <div class="col">
-        @forelse ($rooms as $room)
+                @forelse ($rooms as $room)
                     <div class="card mb-3" style="max-width: 740px;">
                         <div class="row g-2">
                             <div class="col-6">
@@ -118,7 +119,7 @@
             </div>
         </div>
 
-        <table class="table table-striped">
+        <!--<table class="table table-striped">
             <div class="row-2">
                 <thead>
                     <tr>
@@ -159,7 +160,7 @@
                                 <td>
                                     <form method="POST" action="{{ route('login', $room->id) }}">
                                         @csrf
-                                        <!-- @method('DELETE') -->
+                                        @method('DELETE')
                                         <button class="btn btn-danger" type="submit" href="{{ route('login') }}">Reserve</button>
                                     </form>
                                 </td>
@@ -171,9 +172,9 @@
                                         <button class="btn btn-danger"  href="{{ route('login') }}">Reserve</button>
                                     </form>
                                 </td>
-                                <!-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">Sign in...</a>
-                                </li> -->
+                                </li>
                                 @endif
                             </tr>
                         @empty
@@ -182,7 +183,7 @@
                     </div>
                 </tbody>
             </div>  
-        </table>
+        </table>-->
     </div>
     @include('shared.footer')
 </body>
