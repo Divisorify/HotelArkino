@@ -16,7 +16,6 @@ class ReservationSeeder extends Seeder
      */
     public function run()
     {
-
         $reservation = Reservations::create([
             'email' => 'marta@email.com', 
             'room_id' => '1',
@@ -24,19 +23,5 @@ class ReservationSeeder extends Seeder
             'check_out' =>Carbon::parse('2022-06-20')->format('Y-m-d'),
         ]);
         $reservation->save();
-
-
-        // Reservations::truncate();
-        // Reservations::upsert(
-        //     [
-        //         [
-        //             'email' => 'marta@email.com', 
-        //             'room_id' => '1', 
-        //             'check_in' =>Carbon::parse('2022-06-17')->format('Y-m-d'),
-        //             'check_out' =>Carbon::parse('2022-06-20')->format('Y-m-d'),
-        //         ]
-
-        //     ],
-        // );
     }
 }

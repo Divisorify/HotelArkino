@@ -13,9 +13,10 @@ class ReservationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($email)
+    public function index()
     {
-        $reservations = Reservations::where('email','=',$email)->first();
+        // where('email','=',$email)->first()
+        $reservations = Reservations::all();
         return view('reservations.index',['reservations' => $reservations]);
     }
 

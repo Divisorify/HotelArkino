@@ -24,7 +24,8 @@
                 </li>
                 @if (Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('reservations.index',['email'=>Auth::user()->email]) }}">My reservations</a>
+                    <a class="nav-link" href="{{ route('reservations.index') }}">My reservations</a>
+                    <!-- where('email','=',$email)->first() -->
                 </li>
                 @endif
                 <li>

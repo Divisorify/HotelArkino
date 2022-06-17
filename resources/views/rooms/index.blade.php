@@ -7,7 +7,7 @@
     @include('shared.nav')
 
     
-    <div class="row">
+    <!-- <div class="row">
                 @forelse ($rooms as $room)
                     <div class="card mb-3" style="max-width: 740px;">
                         <div class="row g-2">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 @endforeach
-    </div>
+    </div> -->
 
     <div class="container">
         <h1>Choose your room</h1>
@@ -45,7 +45,7 @@
                     <div class="col">
                         <label for="date" class="form-label">Check-in Date</label>
                         <div class="input-group date" id="datepicker" class="datepicker">
-                            <input type="date" class="form-control" id="date"/></input>
+                            <input type="text" class="form-control datepicker" id="datepicker"/></input>
                             <span class="input-group-append">
                             <!-- <span class="input-group-text bg-light d-block"> -->
                                 <!-- <i class="fa fa-calendar"></i> -->
@@ -54,14 +54,14 @@
                     </div>
                     <div class="col">
                         <label for="date" class="form-label">Check-out Date</label>
-                        <div class="input-group date" id="datepicker">
-                            <input type="date" class="form-control" id="date"/></input>
+                        <div class="input-group date" id="datepicker" class="datepicker">
+                            <input type="text" class="form-control datepicker" id="datepicker"/></input>
                             <span class="input-group-append">
-                                <i class="fa fa-calendar"></i>
+                                <!-- <i class="fa fa-calendar"></i> -->
                             </span>
                         </div>
                     </div>
-                <div class="col mb-3">
+                <!-- <div class="col mb-3">
                     <form class="row" style="max-width: 220px">
                         <label for="exampleResidents" class="form-label">Residents</label>
                         <select class="form-select" aria-label="Default select example">
@@ -72,26 +72,13 @@
                             <option value="5">5</option>
                         </select>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
 
-        <script>
-            $('.datepicker').datepicker({
-            disable: [
-                { from: [2022,6,14], to: [2022,6,17] }
-            ]
-            })
-        </script>
-        <script>
-            $('.datepicker').datepicker({
-                disable: [
-                [2022,6,3],
-                [2022,6,12],
-                [2022,6,20]
-                ]
-            })
-        </script>
+
+
+        <h3>Available rooms</h3>
 
         <div class="row">
             <div class="col">
@@ -187,5 +174,23 @@
     </div>
     @include('shared.footer')
 </body>
+
+<script type="text/javascript">
+var disableDates = ["9-11-2019", "14-11-2019", "15-11-2019","27-6-2022"];
+$('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    startDate: new Date(),
+
+    beforeShowDay: function(date){
+        dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+        if(disableDates.indexOf(dmy) != -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+});
+</script>
 
 </html>
