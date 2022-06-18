@@ -4,10 +4,8 @@
 @include('shared.header')
 
 <body>
-
   @include('shared.nav')
 
-  <!--Karuzela-->
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -52,11 +50,9 @@
         </button>
       </div>
 
-
   <br>
   <div class="container">
 
-    <!--Karty-->
     <h3>Rooms</h3>
     <br>
     <div class="row align-items-stretch">
@@ -76,7 +72,6 @@
       @endforelse
     </div>
 
-    <!--Cennik-->
     <br>
     <h4>Pricelist</h4>
     <div id="tabelka">
@@ -111,8 +106,6 @@
         </tbody>
       </table>
     </div>
-
-    
 
     <div class="container mt-5" id="Other"> 
         <div class="row">

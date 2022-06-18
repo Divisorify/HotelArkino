@@ -4,7 +4,6 @@
 @include('shared.header')
 
 <body>
-
     @include('shared.nav')
     <div class="container">
         @if (Route::is('rooms.create'))

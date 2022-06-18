@@ -25,7 +25,7 @@ class UpdateReservationsRequest extends FormRequest
     {
         return [
             'email' => 'required|unique:reservations,email,'.$this->email,
-            'room_id' => 'required|bigInteger',
+            'room_id' => 'required|int',
             'check_in' => 'required|date',
             'check_out' => 'required|date',
         ];
