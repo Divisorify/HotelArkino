@@ -92,7 +92,6 @@
                     @endforelse
     @endif
 
-
     @include('shared.footer')
 </body>
 

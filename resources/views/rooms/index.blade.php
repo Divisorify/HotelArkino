@@ -47,8 +47,6 @@
                         <div class="input-group date" id="datepicker" class="datepicker">
                             <input type="text" class="form-control datepicker" id="datepicker"/></input>
                             <span class="input-group-append">
-                            <!-- <span class="input-group-text bg-light d-block"> -->
-                                <!-- <i class="fa fa-calendar"></i> -->
                             </span>
                         </div>
                     </div>
@@ -57,7 +55,6 @@
                         <div class="input-group date" id="datepicker" class="datepicker">
                             <input type="text" class="form-control datepicker" id="datepicker"/></input>
                             <span class="input-group-append">
-                                <!-- <i class="fa fa-calendar"></i> -->
                             </span>
                         </div>
                     </div>
@@ -76,8 +73,6 @@
             </div>
         </div>
 
-
-
         <h3>Available rooms</h3>
 
         <div class="row">
@@ -94,7 +89,7 @@
                                     <p class="card-text">Beds: {{$room->beds}}</p>
                                     <p class="card-text">Residents: {{$room->persons}}</p>
                                     <p class="card-text">Area: {{$room->area}} m<sup>2</sup></p>
-                                    <a href="{{route('rooms.index')}}" class="btn btn-danger">Reserve</a>
+                                    <a href="{{route('reservations.create')}}" class="btn btn-danger">Reserve</a>
                                 </div>
                             </div>
                         <div class="card-footer text-muted">

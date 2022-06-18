@@ -13,7 +13,7 @@ class UpdateReservationsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateReservationsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => 'required|unique:reservations,email,'.$this->email,
+            'room_id' => 'required|bigInteger',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date',
         ];
     }
 }

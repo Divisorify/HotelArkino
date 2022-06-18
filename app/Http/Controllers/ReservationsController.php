@@ -27,7 +27,7 @@ class ReservationsController extends Controller
      */
     public function create()
     {
-        //
+        return view('reservations.create_or_edit');
     }
 
     /**
@@ -38,7 +38,9 @@ class ReservationsController extends Controller
      */
     public function store(StoreReservationsRequest $request)
     {
-        //
+        Reservations::create(['email' => $request['email'], 'room_id' => $request['room_id'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out']]);
+
+        return redirect('/reservations');
     }
 
     /**
@@ -49,7 +51,7 @@ class ReservationsController extends Controller
      */
     public function show(Reservations $reservations)
     {
-        //
+        return view('reservations.show', ['reservations' => $reservations]);
     }
 
     /**
@@ -60,7 +62,7 @@ class ReservationsController extends Controller
      */
     public function edit(Reservations $reservations)
     {
-        //
+        return view('reservations.create_or_edit', ['reservations' => $reservations]);
     }
 
     /**
@@ -70,9 +72,18 @@ class ReservationsController extends Controller
      * @param  \App\Models\Reservations  $reservations
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReservationsRequest $request, Reservations $reservations)
+    public function update(UpdateReservationsRequest $request, $email)
     {
-        //
+        $reservations = Reservations::where('email', '=', $email);
+
+        $reservations->update([
+            'email'  => $request['email'],
+            'room_id'  => $request['room_id'],
+            'check_in'  => $request['check_in'],
+            'check_out'  => $request['check_out'],
+        ]);
+
+        return redirect(route('reservations.index'));
     }
 
     /**
@@ -83,6 +94,7 @@ class ReservationsController extends Controller
      */
     public function destroy(Reservations $reservations)
     {
-        //
+        $reservations->delete();
+        return redirect(route('reservations.index'));
     }
 }
