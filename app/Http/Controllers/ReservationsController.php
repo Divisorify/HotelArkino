@@ -80,7 +80,7 @@ class ReservationsController extends Controller
             'email'  => $request['email'],
             'room_id'  => $request['room_id'],
             'check_in'  => $request['check_in'],
-            'check_out'  => $request['check_out'],
+            'check_out'  => $request['check_out']
         ]);
 
         return redirect(route('reservations.index'));

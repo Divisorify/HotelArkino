@@ -13,6 +13,13 @@
                 href="{{ route('reservations.create') }}">Add new reservation</a>
         </div>
     @endcan
+
+    @can('is-admin')
+        <div class="row">
+            <a class="btn-primary btn my-5 block ml-5" style="width: 10rem"
+                href="{{ route('reservations.edit') }}">Edit reservation</a>
+        </div>
+    @endcan
     
     @if (Auth::user()->email == 'marta@email.com')
     <h2>Hi Marta!</h2>

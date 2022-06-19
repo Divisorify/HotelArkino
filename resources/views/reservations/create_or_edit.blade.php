@@ -36,7 +36,7 @@
         <div class="row mb-3">
             <label for="check_in" class="col-sm-2 col-form-label">Check_in</label>
             <div class="col-sm-10">
-                <input @isset(reservations) value={{ $reservations->beds }} @endisset id="check_in"
+                <input @isset(reservations) value={{ $reservations->check_in }} @endisset id="check_in"
                     name="check_in" type="date"
                     class="form-control @error('check_in') is-invalid @else is-valid @enderror">
                 <div class="invalid-feedback">Invalid value!</div>

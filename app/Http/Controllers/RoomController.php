@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use App\Models\Reservations;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -20,8 +21,9 @@ class RoomController extends Controller
     {
         // Pobranie danych z bazy danych
         $rooms = Room::all();
+        $reservations = Reservations::all();
         // Zwrócenie widoku(przekazujemy dane ze zmiennej $countries)
-        return view('rooms.index', ['rooms' => $rooms]);
+        return view('rooms.index', ['rooms' => $rooms], ['reservations' => $reservations]);
 
         // if (!Gate::allows('find_room_access')) {
         //     return abort(401);
