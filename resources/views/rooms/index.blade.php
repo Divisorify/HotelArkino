@@ -48,13 +48,20 @@
 
         @foreach($reservations as $reservation)
         <div id="reserved_room">{{ $reservation->room_id }}</div>
-        <div id="reserved_check_in">{{ $reservation->check_in }}</div>
+        <div id="reserved_check_in" class="status">{{ $reservation->check_in }}</div>
         <div id="reserved_check_out">{{ $reservation->check_out }}</div>
-
         @section('scripts')
         <script type="text/javascript">
         var reserved_check_in = document.getElementById("reserved_check_in");
         var reserved_check_out = document.getElementById("reserved_check_out");
+        var statuses = document.getElementsByClassName("status");
+        var arrayLength = statuses.length;
+        document.write(arrayLength);
+        for (var i = 0; i < arrayLength; i++) {
+            statuses[i] = statuses[i].innerHTML;
+            statuses[i] = statuses[i].substr(statuses.length-7);
+            document.write(statuses[i]);
+        }
         // disableDates.push(reserved_check_in.innerHTML)
         // disableDates.push(reserved_check_out.innerHTML)
         // document.write(reserved_check_in.innerHTML)
@@ -65,7 +72,7 @@
 
         reserved_check_in = parseInt(reserved_check_in, 10);
         reserved_check_out = parseInt(reserved_check_out, 10);
-        document.write(reserved_check_in);
+        document.write('/n'+reserved_check_in);
         document.write(reserved_check_out);
 
         var check_in = document.getElementById("check_in").value;
