@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\Reservations;
 use App\Http\Requests\StoreReservationsRequest;
 use App\Http\Requests\UpdateReservationsRequest;
@@ -38,9 +39,9 @@ class ReservationsController extends Controller
      */
     public function store(StoreReservationsRequest $request)
     {
-        Reservations::create(['email' => $request['email'], 'room_id' => $request['room_id'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out']]);
+        // Reservations::create(['email' => $request['email'], 'room_id' => $request['room_id'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out']]);
 
-        return redirect('/reservations');
+        // return redirect('/reservations');
     }
 
     /**
@@ -49,9 +50,9 @@ class ReservationsController extends Controller
      * @param  \App\Models\Reservations  $reservations
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservations $reservations)
+    public function show(Reservations $reservation)
     {
-        return view('reservations.show', ['reservations' => $reservations]);
+        return view('reservations.show', ['reservation' => $reservation]);
     }
 
     /**
@@ -62,21 +63,22 @@ class ReservationsController extends Controller
      */
     public function edit(Reservations $reservations)
     {
-        return view('reservations.create_or_edit', ['reservations' => $reservations]);
+        $rooms = Room::all();
+        return view('reservations.create_or_edit', ['reservations' => $reservations, 'rooms' => $rooms]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateReservationsRequest  $request
-     * @param  \App\Models\Reservations  $reservations
+     * @param  \App\Models\Reservations  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReservationsRequest $request, $email)
+    public function update(UpdateReservationsRequest $request, $id)
     {
-        $reservations = Reservations::where('email', '=', $email);
+        $reservation = Reservations::where('id', '=', $id);
 
-        $reservations->update([
+        $reservation->update([
             'email'  => $request['email'],
             'room_id'  => $request['room_id'],
             'check_in'  => $request['check_in'],
@@ -92,9 +94,9 @@ class ReservationsController extends Controller
      * @param  \App\Models\Reservations  $reservations
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservations $reservations)
+    public function destroy(Reservations $reservation)
     {
-        $reservations->delete();
+        $reservation->delete();
         return redirect(route('reservations.index'));
     }
 }

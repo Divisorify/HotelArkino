@@ -17,10 +17,10 @@ return new class extends Migration
         Schema::create('roomtypes', function (Blueprint $table) {
             $table->id();
             $table->string('type', 25)->unique();
-            $table->string('persons', 25);
+            $table->integer('persons');
             $table->text('beds');
             $table->text('description');
-            $table->string('price');
+            $table->integer('price');
             $table->foreignIdFor(Room::class)->constrained();
             $table->timestamps();
         });

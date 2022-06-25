@@ -107,7 +107,7 @@
       </table>
     </div>
 
-    <div class="container mt-5" id="Other"> 
+    <div class="container mt-5 my-2" id="Other"> 
         <div class="row">
           <div class="col">
             <h1>About Arkino Hotel</h1>
@@ -144,8 +144,19 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-          </div>
-    
+            </div>
+            <div class="form-group mb-2">
+                <label for="check_in">Check_in</label>
+                <input id="check_in" name="check_in" class="form-control datepicker" type="date"
+                    class="@error('check_in') is-invalid @else is-valid @enderror">
+                <div class="invalid-feedback">Invalid value!</div>
+            </div>
+            <div class="form-group mb-2">
+                <label for="check_out">Check_out</label>
+                <input id="check_out" name="check_out" class="form-control datepicker" type="date"
+                class="@error('check_out') is-invalid @else is-valid @enderror">
+                <div class="invalid-feedback">Invalid value!</div>
+            </div>
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

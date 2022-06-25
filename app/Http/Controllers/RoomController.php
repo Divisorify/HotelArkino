@@ -28,23 +28,23 @@ class RoomController extends Controller
         // if (!Gate::allows('find_room_access')) {
         //     return abort(401);
         // }
-        $time_from = $request->input('time_from');
-        $time_to = $request->input('time_to');
+        // $time_from = $request->input('time_from');
+        // $time_to = $request->input('time_to');
 
 
-        if ($request->isMethod('POST')) {
-              $rooms = Room::whereNotIn('id', function($query) use ($time_from, $time_to) {
-            $query->from('reservations')
-                ->select('room_id')
-                ->where('time_from', '<=', $time_to)
-                ->where('time_to', '>=', $time_from);
-        })->get();
-        } else {
-            $rooms = null;
-        }
+        // if ($request->isMethod('POST')) {
+        //       $rooms = Room::whereNotIn('id', function($query) use ($time_from, $time_to) {
+        //     $query->from('reservations')
+        //         ->select('room_id')
+        //         ->where('time_from', '<=', $time_to)
+        //         ->where('time_to', '>=', $time_from);
+        // })->get();
+        // } else {
+        //     $rooms = null;
+        // }
 
 
-        return view('rooms.index', compact('rooms', 'time_from', 'time_to'));
+        //return view('rooms.index', compact('rooms', 'time_from', 'time_to'));
     
     }
 
@@ -88,9 +88,9 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit(Room $rooms)
     {
-        return view('rooms.create_or_edit', ['room' => $room]);
+        return view('rooms.create_or_edit', ['rooms' => $rooms]);
     }
 
     /**

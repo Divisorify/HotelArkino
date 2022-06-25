@@ -22,6 +22,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#page-footer">Contact</a>
                 </li>
+                @if('is-admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('offers.index') }}">Offerts</a>
+                </li>
+                @endif
                 @if (Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('reservations.index') }}">My reservations</a>

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('type', 50)->unique();
-            $table->string('persons', 3);
+            $table->integer('persons');
             $table->text('beds', 50);
             $table->string('area');
-            $table->string('price', 15);
+            $table->integer('price');
             $table->timestamps();
         });
     }

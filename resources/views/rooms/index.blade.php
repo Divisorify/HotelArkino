@@ -47,16 +47,16 @@
         </div>
 
         @foreach($reservations as $reservation)
-        <div id="reserved_room">{{ $reservation->room_id }}</div>
+        <!-- <div id="reserved_room">{{ $reservation->room_id }}</div>
         <div id="reserved_check_in" class="status">{{ $reservation->check_in }}</div>
-        <div id="reserved_check_out">{{ $reservation->check_out }}</div>
+        <div id="reserved_check_out">{{ $reservation->check_out }}</div> -->
         @section('scripts')
         <script type="text/javascript">
         var reserved_check_in = document.getElementById("reserved_check_in");
         var reserved_check_out = document.getElementById("reserved_check_out");
         var statuses = document.getElementsByClassName("status");
         var arrayLength = statuses.length;
-        document.write(arrayLength);
+        //document.write(arrayLength);
         for (var i = 0; i < arrayLength; i++) {
             statuses[i] = statuses[i].innerHTML;
             statuses[i] = statuses[i].substr(statuses.length-7);
@@ -113,7 +113,11 @@
                                     <p class="card-text">Beds: {{$room->beds}}</p>
                                     <p class="card-text">Residents: {{$room->persons}}</p>
                                     <p class="card-text">Area: {{$room->area}} m<sup>2</sup></p>
-                                    <!-- <a href="{{route('reservations.create')}}" class="btn btn-danger">Reserve</a> -->
+                                    <a href="{{route('reservations.create', $room->id)}}" class="btn btn-danger">Reserve</a>
+                                    @can('is-admin')
+                                    <a class="btn-primary btn block ml-5" style="width: 10rem"
+                                        href="{{ route('rooms.edit', $room->id) }}">Edit room</a>
+                                    @endcan
                                 </div>
                             </div>
                         <div class="card-footer text-muted">

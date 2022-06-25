@@ -4,9 +4,11 @@
 @include('shared.header')
 
 <body>
-@include('shared.nav')
+
+    @include('shared.nav')
+
     <div class="container">
-        <h1 class="mt-5 text-center">Update Reservation</h1>
+        <h1 class="mt-5 text-center">Update Room</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -17,14 +19,12 @@
                 </ul>
             </div>
         @endif
-        
-        @if (Route::is('reservations.create'))
-            <h1 class="my-5">Add reservation</h1>
-            <form class='container mb-3' method="POST" action="{{ route('reservations.store') }}">
-                @csrf
-        @endif
 
-        <div class="row mb-3">
+
+        <form class='container my-5' method="POST" action="{{ route('reservations.update', $room->id) }}">
+            @csrf
+            @method('PUT')
+            <div class="row mb-3">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
                 <input @isset($reservation) value={{ $reservation->email }} @endisset id="email" name="email"
@@ -57,9 +57,9 @@
                 <div class="invalid-feedback">Invalid value!</div>
             </div>
         </div>
-
-        <input class="btn btn-primary" type="submit" value="Send">
+            <input type="submit" value="Send">
         </form>
+
     </div>
     @include('shared.footer')
 </body>
