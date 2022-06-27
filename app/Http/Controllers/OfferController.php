@@ -27,7 +27,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('offers.create_or_edit');
     }
 
     /**
@@ -51,7 +51,7 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        //return view('offers.show', ['offer' => $offer]);
+        return view('offers.show', ['offer' => $offer]);
     }
 
     /**
@@ -62,7 +62,8 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        //$offers = Offer::all();
+        return view('offers.create_or_edit', ['offer' => $offer]);
     }
 
     /**
@@ -72,9 +73,29 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOfferRequest $request, Offer $offer)
+    public function update(UpdateOfferRequest $request, $id)
     {
-        //
+        $offer = Offer::where('id', '=', $id);
+        
+        $request->validate([
+            'email' => 'required|email',
+            'roomtype' => 'required|string|max:15',
+            'residents' => 'required|integer',
+            'check_in' => 'required|date|max:12',
+            'check_out' => 'required|date|max:12',
+            'comment' => 'required|string|max:500'
+        ]);
+
+        $offer->update([
+            'email' => 'required|email',
+            'roomtype' => 'required|string',
+            'residents' => 'required|integer',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date',
+            'comment' => 'required|string'
+        ]);
+
+        return redirect(route('offers.index'));
     }
 
     /**

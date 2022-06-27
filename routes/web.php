@@ -31,7 +31,7 @@ Route::get('/test', function () {
     return DB::select('select * from roomtypes');
 });
 
-// Zwraca wycieczki w formie listy
+// Zwraca pokoje w formie listy
 Route::get('/roomtype_test', function () {
     return print_r(RoomType::all(), true);
 });

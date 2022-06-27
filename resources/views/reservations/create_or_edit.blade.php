@@ -6,7 +6,12 @@
 <body>
 @include('shared.nav')
     <div class="container">
-        <h1 class="mt-5 text-center">Update Reservation</h1>
+        @if (Route::is('reservations.edit'))
+        <h1 class="mt-5 text-center" >Update Reservation</h1>
+        <form class='container mb-3' method="POST" action="{{ route('reservations.update', $reservation->id) }}">
+            @csrf
+            @method('PUT')
+        @endif
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -35,6 +40,14 @@
         <div class="row mb-3">
             <label for="room_id" class="col-sm-2 col-form-label">RoomID</label>
             <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example">
+                <option value="1">1 - Classic</option>
+                <option value="2">2 - Studio</option>
+                <option value="3">3 - Superior</option>
+                <option value="4">4 - Master</option>
+                <option value="5">5 - Family</option>
+                <option value="6">6 - Presidental</option>
+            </select>
                 <input @isset($reservation) value={{ $reservation->room_id }} @endisset id="room_id" name="room_id"
                     type="text" class="form-control @error('room_id') is-invalid @else is-valid @enderror">
                 <div class="invalid-feedback">Invalid value!</div>

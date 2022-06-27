@@ -13,7 +13,7 @@ class UpdateOfferRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => 'required|email',
+            'roomtype' => 'required|string|max:15',
+            'residents' => 'required|integer',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date',
+            'comment' => 'required|string|max:300',
         ];
     }
 }

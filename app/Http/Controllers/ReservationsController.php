@@ -78,6 +78,13 @@ class ReservationsController extends Controller
     {
         $reservation = Reservations::where('id', '=', $id);
 
+        $request->validate([
+            'email' => 'required|email',
+            'room_id' => 'required|int',
+            'check_in' => 'required|date|max:12',
+            'check_out' => 'required|date|max:12',
+        ]);
+        
         $reservation->update([
             'email'  => $request['email'],
             'room_id'  => $request['room_id'],

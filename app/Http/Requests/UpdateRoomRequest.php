@@ -24,11 +24,11 @@ class UpdateRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required|unique:rooms,type,'.$this->id,
-            'persons' => 'required|string',
-            'beds' => 'required|string',
-            'area' => 'required|string',
-            'price' => 'required|string',
+            'type' => 'required|string',
+            'persons' => 'required|string|max:20',
+            'beds' => 'required|string|max:20',
+            'area' => 'required|int',
+            'price' => 'required|int',
         ];
     }
 }

@@ -25,10 +25,10 @@ class StoreRoomRequest extends FormRequest
     {
         return [
             'type' => 'required|string|unique:rooms,type',
-            'persons' => 'required|string',
-            'beds' => 'required|string',
-            'area' => 'required|string',
-            'price' => 'required|string',
+            'persons' => 'required|string|max:20',
+            'beds' => 'required|string|max:20',
+            'area' => 'required|int',
+            'price' => 'required|int',
         ];
     }
 }

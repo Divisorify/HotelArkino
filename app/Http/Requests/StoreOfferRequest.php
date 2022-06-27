@@ -13,7 +13,7 @@ class StoreOfferRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,12 +24,12 @@ class StoreOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string',
-            'roomtype' => 'required|string',
-            'residents' => 'required|string',
+            'email' => 'required|email',
+            'roomtype' => 'required|string|max:15',
+            'residents' => 'required|integer',
             'check_in' => 'required|date',
             'check_out' => 'required|date',
-            'comment' => 'required|string',
+            'comment' => 'required|string|max:300',
         ];
     }
 }

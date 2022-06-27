@@ -164,11 +164,12 @@
               </div>
               <button type="submit" class="btn btn-primary align-right" id="send">Send</button>
             </form>
-            <script>
+            <!-- <script>
               function myFunction() {
                 alert("The form was submitted");
+                window.location.reload();
               }
-            </script>
+            </script> -->
           </div>
         </div>
       </div>

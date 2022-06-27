@@ -53,11 +53,11 @@ class RoomPolicy
      */
     public function update(User $user, Room $room)
     {
-        // if($user->room_id==$room->id){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
+        if($user->room_id==$room->id){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

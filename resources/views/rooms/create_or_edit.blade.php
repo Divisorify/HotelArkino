@@ -12,6 +12,13 @@
                 @csrf
         @endif
 
+        @if (Route::is('rooms.edit'))
+            <h1 class="my-5">Edit room</h1>
+            <form class='container mb-3' method="POST" action="{{ route('rooms.update', $room->id) }}">
+                @csrf
+                @method('PUT')
+        @endif
+
             <div class="row mb-3">
                 <label for="type" class="col-sm-2 col-form-label">Type</label>
                 <div class="col-sm-10">

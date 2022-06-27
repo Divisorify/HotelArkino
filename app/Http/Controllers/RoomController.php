@@ -88,9 +88,9 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $rooms)
+    public function edit(Room $room)
     {
-        return view('rooms.create_or_edit', ['rooms' => $rooms]);
+        return view('rooms.create_or_edit', ['room' => $room]);
     }
 
     /**
@@ -104,6 +104,14 @@ class RoomController extends Controller
     {
 
         $room = Room::where('id', '=', $id);
+
+        $request->validate([
+            'type' => 'required|string',
+            'persons' => 'required|string|max:20',
+            'beds' => 'required|string|max:20',
+            'area' => 'required|int',
+            'price' => 'required|int',
+        ]);
 
         $room->update([
             'type'  => $request['type'],
