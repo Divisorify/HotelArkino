@@ -15,7 +15,6 @@
         </div>
         @endcan
 
-        
         <div class="container">
             <h1>Make Reservation</h1>
             <form class='container my-3' method="POST" action="{{ route('reservations.store') }}">

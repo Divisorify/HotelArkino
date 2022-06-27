@@ -24,7 +24,12 @@ class StoreOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => 'required|string',
+            'roomtype' => 'required|string',
+            'residents' => 'required|string',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date',
+            'comment' => 'required|string',
         ];
     }
 }

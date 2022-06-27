@@ -15,7 +15,9 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('offers.index');
+        // return view('offers.index');
+        $offers = Offer::all();
+        return view('offers.index',['offers' => $offers]);
     }
 
     /**
@@ -36,7 +38,9 @@ class OfferController extends Controller
      */
     public function store(StoreOfferRequest $request)
     {
-        //
+        Offer::create(['email' => $request['email'], 'roomtype' => $request['roomtype'], 'residents' => $request['residents'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out'], 'comment' => $request['comment']]);
+
+        return redirect('/roomtypes');
     }
 
     /**
@@ -47,7 +51,7 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        return view('offers.show', ['offer' => $offer]);
+        //return view('offers.show', ['offer' => $offer]);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SpaController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ReservationsController;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,8 @@ Route::resource('restaurant', RestaurantController::class);
 Route::resource('about',AboutController::class);
 
 Route::resource('reservations', ReservationsController::class);
+
+Route::resource('offers', OfferController::class);
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'login')->name('login');

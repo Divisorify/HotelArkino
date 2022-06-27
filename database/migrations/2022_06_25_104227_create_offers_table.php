@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('offer', function (Blueprint $table) {
+        Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->string('email')->nullable(false);
             $table->string('roomtype');
-            $table->foreign('roomtype')->references('type')->on('roomtypes');
-            $table->bigInteger('residents')->unsigned();
-            $table->foreign('residents')->references('persons')->on('roomtypes');
+            //$table->foreign('roomtype')->references('type')->on('roomtypes');
+            $table->integer('residents');
+            //$table->foreign('residents')->references('persons')->on('roomtypes');
             $table->date('check_in');
             $table->date('check_out');
             $table->text('comment');

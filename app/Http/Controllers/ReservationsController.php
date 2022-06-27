@@ -39,9 +39,9 @@ class ReservationsController extends Controller
      */
     public function store(StoreReservationsRequest $request)
     {
-        // Reservations::create(['email' => $request['email'], 'room_id' => $request['room_id'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out']]);
+        Reservations::create(['email' => $request['email'], 'room_id' => $request['room_id'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out']]);
 
-        // return redirect('/reservations');
+        return redirect('/reservations');
     }
 
     /**

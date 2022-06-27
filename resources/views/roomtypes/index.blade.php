@@ -117,51 +117,58 @@
             </div>
           </div>
           <div class="col">
-            <h1>Ask for an offer</h1>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-    
-            <div class="mb-3">
-              <label for="exampleRoomType" class="form-label">Room type</label>
-            <select class="form-select" aria-label="Default select example">
-              <option value="1">Classic</option>
-              <option value="2">Studio</option>
-              <option value="3">Superior</option>
-              <option value="4">Master</option>
-              <option value="5">Family</option>
-              <option value="6">Presidental</option>
-            </select>
-          </div>
-    
-            <div class="mb-3">
-              <label for="exampleResidents" class="form-label">Residents</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-            <div class="form-group mb-2">
-                <label for="check_in">Check_in</label>
-                <input id="check_in" name="check_in" class="form-control datepicker" type="date"
-                    class="@error('check_in') is-invalid @else is-valid @enderror">
-                <div class="invalid-feedback">Invalid value!</div>
-            </div>
-            <div class="form-group mb-2">
-                <label for="check_out">Check_out</label>
-                <input id="check_out" name="check_out" class="form-control datepicker" type="date"
-                class="@error('check_out') is-invalid @else is-valid @enderror">
-                <div class="invalid-feedback">Invalid value!</div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary align-right" class="align-right">Send</button>
+            <form class='container' method="POST" action="{{ route('offers.store') }}" onsubmit="myFunction()">
+              <h1>Ask for an offer</h1>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+      
+              <div class="mb-3">
+                <label for="exampleRoomType" class="form-label">Room type</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option value="1">Classic</option>
+                  <option value="2">Studio</option>
+                  <option value="3">Superior</option>
+                  <option value="4">Master</option>
+                  <option value="5">Family</option>
+                  <option value="6">Presidental</option>
+                </select>
+              </div>
+      
+              <div class="mb-3">
+                <label for="exampleResidents" class="form-label">Residents</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <div class="form-group mb-2">
+                  <label for="check_in">Check in</label>
+                  <input id="check_in" name="check_in" class="form-control datepicker" type="date"
+                      class="@error('check_in') is-invalid @else is-valid @enderror">
+                  <div class="invalid-feedback">Invalid value!</div>
+              </div>
+              <div class="form-group mb-2">
+                  <label for="check_out">Check out</label>
+                  <input id="check_out" name="check_out" class="form-control datepicker" type="date"
+                  class="@error('check_out') is-invalid @else is-valid @enderror">
+                  <div class="invalid-feedback">Invalid value!</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary align-right" id="send">Send</button>
+            </form>
+            <script>
+              function myFunction() {
+                alert("The form was submitted");
+              }
+            </script>
           </div>
         </div>
       </div>
