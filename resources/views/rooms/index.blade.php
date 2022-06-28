@@ -52,7 +52,6 @@
         <div class="reserved_check_in">{{ $reservation->check_in }}</div>
         <div class="reserved_check_out">{{ $reservation->check_out }}</div>
         @endforeach
-        @section('scripts')
         <script type="text/javascript">
         var reserved_room = document.getElementsByClassName("reserved_room");
         var reserved_check_in = document.getElementsByClassName("reserved_check_in");
@@ -61,7 +60,13 @@
         var check_in = document.getElementById("check_in");
         var check_out = document.getElementById("check_out");
 
-        // document.write(check_out.innerHTML.value);
+        var i = 5;
+        while(i>0){
+            document.write(i);
+            i--;
+        }
+
+        document.write(check_out.value);
         // document.write(statuses[8].innerHTML)
 
         var ReservedRoom = []
@@ -84,19 +89,53 @@
 
         document.write(ReservedRoom[1]+', ')
         document.write(ReservedIn[1]+', ')
-        document.write(ReservedOut[1])
+        document.write(ReservedOut[1]+', ')
 
-        document.write(check_in.getDate < ReservedIn[1].getDate);
-        document.write(check_in.getDate > ReservedOut[1].getDate);
-        document.write(check_in.getDate > ReservedOut[1].getDate);
+
+        // var x = check_in.value.replace(/-/g, '');
+        // var y = parseInt(ReservedOut[i].replace(/-/g, ''),10);
+        // document.write(x+' ')
+        // document.write(y+' ')
+        // document.write(check_in.getDate == ReservedIn[1].getDate);
+        // document.write(x > y);
+        // document.write(check_in.getDate > ReservedOut[1].getDate);
+        var check_ins = parseInt(check_in.value.replace(/-/g, ''),10);
+        var check_outs = parseInt(check_out.value.replace(/-/g, ''),10);
+        document.write(check_ins)
+        var ilosc = reserved_room.length;
+        var i = 0;
+        while(ilosc>0){
+            var ReservedIns = parseInt(ReservedIn[i].replace(/-/g, ''),10);
+            var ReservedOuts = parseInt(ReservedOut[i].replace(/-/g, ''),10);
+            document.write(check_ins);
+            document.write(check_ins>ReservedIns);
+            document.write(i);
+                if (((check_ins < ReservedIns) && (check_outs < ReservedIns)) ||
+                    ((check_ins > ReservedOuts) && (check_outs > ReservedOuts))) {
+                document.write("Zapraszamy");
+                }else{
+                    document.write("Zajęte");
+                }
+                ilosc--;
+                i++;
+        }
 
         for(var i=0; i<reserved_room.length; i++){
-            if (((check_in.getDate < ReservedIn[i].getDate) && (check_out.getDate < ReservedIn[i].getDate)) || ((check_in.getDate > ReservedOut[i].getDate) && (check_out.getDate > ReservedOut[i].getDate))) {
-        document.write("Zapraszamy")
-        }else{
-            document.write("Zajęte")
+
+            var ReservedIn = parseInt(ReservedIn[i].replace(/-/g, ''),10);
+            var ReservedOut = parseInt(ReservedOut[i].replace(/-/g, ''),10);
+            document.write(check_in);
+            document.write(check_in>ReservedIn);
+            document.write(i);
+                if (((check_in < ReservedIn) && (check_out < ReservedIn)) ||
+                    ((check_in > ReservedOut) && (check_out > ReservedOut))) {
+                document.write("Zapraszamy");
+                }else{
+                    document.write("Zajęte");
+                }
         }
-        }
+
+
         // disableDates.push(reserved_check_in.innerHTML)
         // disableDates.push(reserved_check_out.innerHTML)
         // document.write(reserved_check_in.innerHTML)
@@ -122,15 +161,14 @@
         // document.write(check_out)
         
 
-        document.write(ReservedIn[0] < ReservedOut[0])
-        if (((check_in < reserved_check_in) && (check_out < reserved_check_in)) || ((check_in > reserved_check_out) && (check_out > reserved_check_out))) {
-        document.write("Zapraszamy")
-        $("#tohide").hide();
-        }else{
-            document.write("Zajęte")
-        }
+        // document.write(ReservedIn[0] < ReservedOut[0])
+        // if (((check_in < reserved_check_in) && (check_out < reserved_check_in)) || ((check_in > reserved_check_out) && (check_out > reserved_check_out))) {
+        // document.write("Zapraszamy")
+        // $("#tohide").hide();
+        // }else{
+        //     document.write("Zajęte")
+        // }
         </script>
-        @show
 
         <h3>Available rooms</h3>
         <div class="row" id="tohide">
