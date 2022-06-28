@@ -53,24 +53,23 @@
                   <option value="5">5</option>
                 </select>
                     <input @isset($offer) value={{ $offer->residents }} @endisset id="residents" name="residents"
-                    type="text" class="form-control @error('residents') is-invalid @else is-valid @enderror">
+                    type="number" class="form-control @error('residents') is-invalid @else is-valid @enderror">
                     <div class="invalid-feedback">Invalid value!</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="check_in" class="col-sm-2 col-form-label">Check_in</label>
                 <div class="col-sm-10">
-                    <input @isset($offer) value={{ $offer->check_in }} @endisset id="check_in"
-                        name="check_in" type="date"
-                        class="form-control @error('check_in') is-invalid @else is-valid @enderror">
+                    <input @isset($offer) value={{ $offer->check_in }} @endisset id="check_in" class="form-control datepicker"
+                        name="check_in" class="form-control @error('check_in') is-invalid @else is-valid @enderror">
                     <div class="invalid-feedback">Invalid value!</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="check_out" class="col-sm-2 col-form-label">Check_out</label>
                 <div class="col-sm-10">
-                    <input @isset($offer) value={{ $offer->check_out }} @endisset id="check_out" name="check_out"
-                        type="date" class="form-control @error('check_out') is-invalid @else is-valid @enderror">
+                    <input @isset($offer) value={{ $offer->check_out }} @endisset id="check_out" name="check_out" class="form-control datepicker"
+                        class="form-control @error('check_out') is-invalid @else is-valid @enderror">
                     <div class="invalid-feedback">Invalid value!</div>
                 </div>
             </div>
@@ -97,5 +96,26 @@
     </div>
     @include('shared.footer')
 </body>
+
+<script type="text/javascript">
+var disableDates = ["2022-7-13", "2022-6-25","2022-6-27"];
+
+for (let i = 0; i < 1; i++) { 
+
+}
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: new Date(),
+    beforeShowDay: function(date){
+        dmy = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +  date.getDate();
+        if(disableDates.indexOf(dmy) != -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+});
+</script>
 
 </html>

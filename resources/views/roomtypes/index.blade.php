@@ -117,15 +117,20 @@
             </div>
           </div>
           <div class="col">
-            <form class='container' method="POST" action="{{ route('offers.store') }}" onsubmit="myFunction()">
+            <form class='container' method="POST" action="{{ route('offers.store') }}">
+              @csrf
               <h1>Ask for an offer</h1>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-              </div>
-      
-              <div class="mb-3">
-                <label for="exampleRoomType" class="form-label">Room type</label>
+              <div class="row mb-3">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input @isset($offer) value={{ $offer->email }} @endisset id="email" name="email"
+                    type="text" class="form-control @error('email') is-invalid @else is-valid @enderror">
+                    <div class="invalid-feedback">Invalid value!</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="roomtype" class="col-sm-2 col-form-label">Room Type</label>
+                <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example">
                   <option value="1">Classic</option>
                   <option value="2">Studio</option>
@@ -134,10 +139,14 @@
                   <option value="5">Family</option>
                   <option value="6">Presidental</option>
                 </select>
-              </div>
-      
-              <div class="mb-3">
-                <label for="exampleResidents" class="form-label">Residents</label>
+                    <input @isset($offer) value={{ $offer->roomtype }} @endisset id="roomtype" name="roomtype"
+                    type="text" class="form-select @error('roomtype') is-invalid @else is-valid @enderror">
+                    <div class="invalid-feedback">Invalid value!</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="residents" class="col-sm-2 col-form-label">Residents</label>
+                <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example">
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -145,31 +154,43 @@
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-              </div>
-              <div class="form-group mb-2">
-                  <label for="check_in">Check in</label>
-                  <input id="check_in" name="check_in" class="form-control datepicker" type="date"
-                      class="@error('check_in') is-invalid @else is-valid @enderror">
-                  <div class="invalid-feedback">Invalid value!</div>
-              </div>
-              <div class="form-group mb-2">
-                  <label for="check_out">Check out</label>
-                  <input id="check_out" name="check_out" class="form-control datepicker" type="date"
-                  class="@error('check_out') is-invalid @else is-valid @enderror">
-                  <div class="invalid-feedback">Invalid value!</div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary align-right" id="send">Send</button>
+                    <input @isset($offer) value={{ $offer->residents }} @endisset id="residents" name="residents"
+                    type="number" class="form-control @error('residents') is-invalid @else is-valid @enderror">
+                    <div class="invalid-feedback">Invalid value!</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="check_in" class="col-sm-2 col-form-label">Check_in</label>
+                <div class="col-sm-10">
+                    <input @isset($offer) value={{ $offer->check_in }} @endisset id="check_in" class="form-control datepicker"
+                        name="check_in" class="form-control @error('check_in') is-invalid @else is-valid @enderror">
+                    <div class="invalid-feedback">Invalid value!</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="check_out" class="col-sm-2 col-form-label">Check_out</label>
+                <div class="col-sm-10">
+                    <input @isset($offer) value={{ $offer->check_out }} @endisset id="check_out" name="check_out" class="form-control datepicker"
+                        class="form-control @error('check_out') is-invalid @else is-valid @enderror">
+                    <div class="invalid-feedback">Invalid value!</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="comment" class="col-sm-2 col-form-label">Comment</label>
+                <div class="col-sm-10">
+                    <input @isset($offer) value={{ $offer->comment }} @endisset id="comment" name="comment"
+                        type="text" class="form-control @error('comment') is-invalid @else is-valid @enderror">
+                    <div class="invalid-feedback">Invalid value!</div>
+                </div>
+            </div>
+              <button type="submit" class="btn btn-primary align-right">Send</button>
             </form>
-            <!-- <script>
-              function myFunction() {
-                alert("The form was submitted");
-                window.location.reload();
-              }
-            </script> -->
+            <script>
+              // function myFunction() {
+              //   alert("The form was submitted");
+              //   window.location.reload();
+              // }
+            </script>
           </div>
         </div>
       </div>
@@ -177,5 +198,18 @@
   @include('shared.footer')
 
 </body>
+
+<script type="text/javascript">
+var disableDates = ["2022-7-13", "2022-6-25","2022-6-27"];
+
+for (let i = 0; i < 1; i++) { 
+
+}
+document.write(disableDates)
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: new Date(),
+});
+</script>
 
 </html>
