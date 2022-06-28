@@ -104,76 +104,44 @@
         document.write(check_ins)
         var ilosc = reserved_room.length;
         var i = 0;
+        var UnavailableRooms = [];
         while(ilosc>0){
             var ReservedIns = parseInt(ReservedIn[i].replace(/-/g, ''),10);
             var ReservedOuts = parseInt(ReservedOut[i].replace(/-/g, ''),10);
-            document.write(check_ins);
-            document.write(check_ins>ReservedIns);
-            document.write(i);
+            var ReservedRooms = parseInt(ReservedRoom[i],10);
+            document.write('</br>'+ReservedRooms+'\n');
+            // document.write(check_ins>ReservedIns);
+            document.write(i+'.');
                 if (((check_ins < ReservedIns) && (check_outs < ReservedIns)) ||
                     ((check_ins > ReservedOuts) && (check_outs > ReservedOuts))) {
-                document.write("Zapraszamy");
+                document.write("Zapraszamy"+'\n');
                 }else{
-                    document.write("Zajęte");
+                    document.write("Zajęte"+'\n');
+                    UnavailableRooms.push(ReservedRooms);
                 }
                 ilosc--;
                 i++;
         }
 
-        for(var i=0; i<reserved_room.length; i++){
+        document.write('</br>'+UnavailableRooms);
 
-            var ReservedIn = parseInt(ReservedIn[i].replace(/-/g, ''),10);
-            var ReservedOut = parseInt(ReservedOut[i].replace(/-/g, ''),10);
-            document.write(check_in);
-            document.write(check_in>ReservedIn);
-            document.write(i);
-                if (((check_in < ReservedIn) && (check_out < ReservedIn)) ||
-                    ((check_in > ReservedOut) && (check_out > ReservedOut))) {
-                document.write("Zapraszamy");
-                }else{
-                    document.write("Zajęte");
-                }
-        }
-
-
-        // disableDates.push(reserved_check_in.innerHTML)
-        // disableDates.push(reserved_check_out.innerHTML)
-        // document.write(reserved_check_in.innerHTML)
-
-        // document.write(reserved_check_in.innerHTML.replace(/-/g, ''));
-        // reserved_check_in = reserved_check_in.innerHTML.replace(/-/g, '');
-        // reserved_check_out = reserved_check_out.innerHTML.replace(/-/g, '');
-
-        // reserved_check_in = parseInt(reserved_check_in, 10);
-        // reserved_check_out = parseInt(reserved_check_out, 10);
-        // document.write('/n'+reserved_check_in);
-        // document.write(reserved_check_out);
-
-        // var check_in = document.getElementById("check_in").value;
-        // var check_out = document.getElementById("check_out").value;
+        // elements = [1, 2, 9, 15].join(',')
+        // $.post('{{ route('rooms.index') }}', {elements: elements})
         
-
-        // check_in = check_in.replace(/-/g, '');
-        // check_out = check_out.replace(/-/g, '');
-        // check_in = parseInt(check_in,10);
-        // check_out = parseInt(check_out,10);
-        // document.write(check_in)
-        // document.write(check_out)
-        
-
-        // document.write(ReservedIn[0] < ReservedOut[0])
-        // if (((check_in < reserved_check_in) && (check_out < reserved_check_in)) || ((check_in > reserved_check_out) && (check_out > reserved_check_out))) {
-        // document.write("Zapraszamy")
-        // $("#tohide").hide();
-        // }else{
-        //     document.write("Zajęte")
-        // }
         </script>
 
         <h3>Available rooms</h3>
-        <div class="row" id="tohide">
+        <div class="row">
+        <pre id="target-id">Message</pre>
+        <script>
+            document.getElementById('target-id').innerHTML = UnavailableRooms;
+        </script>
             <div class="col">
                 @forelse ($rooms as $room)
+                <?php
+                echo "Hello World!";
+
+                ?> 
                     <div class="card mb-3" style="max-width: 740px;">
                         <div class="row g-2">
                             <div class="col-6">
@@ -207,7 +175,7 @@
 </body>
 
 <script type="text/javascript">
-var disableDates = ["2022-7-13", "2022-7-5","2022-6-30"];
+var disableDates = ["2022-7-13", "2022-7-5","2022-7-10"];
 
 for (let i = 0; i < 1; i++) { 
 
