@@ -38,6 +38,15 @@ class OfferController extends Controller
      */
     public function store(StoreOfferRequest $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'roomtype' => 'required|string|max:15',
+            'residents' => 'required|integer',
+            'check_in' => 'required|date|max:12',
+            'check_out' => 'required|date|max:12',
+            'comment' => 'required|string|max:500'
+        ]);
+        
         Offer::create(['email' => $request['email'], 'roomtype' => $request['roomtype'], 'residents' => $request['residents'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out'], 'comment' => $request['comment']]);
 
         return redirect('/roomtypes');

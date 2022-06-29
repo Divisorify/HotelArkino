@@ -68,10 +68,10 @@ class ReservationsController extends Controller
      * @param  \App\Models\Reservations  $reservations
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservations $reservations)
+    public function edit(Reservations $reservation)
     {
         $rooms = Room::all();
-        return view('reservations.create_or_edit', ['reservations' => $reservations, 'rooms' => $rooms]);
+        return view('reservations.create_or_edit', ['reservation' => $reservation, 'rooms' => $rooms]);
     }
 
     /**
