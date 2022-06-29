@@ -39,6 +39,13 @@ class ReservationsController extends Controller
      */
     public function store(StoreReservationsRequest $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'room_id' => 'required|int',
+            'check_in' => 'required|date|max:12',
+            'check_out' => 'required|date|max:12',
+        ]);
+        
         Reservations::create(['email' => $request['email'], 'room_id' => $request['room_id'], 'check_in' => $request['check_in'], 'check_out' => $request['check_out']]);
 
         return redirect('/reservations');

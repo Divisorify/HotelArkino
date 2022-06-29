@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('email')->nullable(false);
-            $table->foreign('email')->references('email')->on('users');
+            // $table->foreign('email')->references('email')->on('users');
             $table->bigInteger('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->date('check_in');

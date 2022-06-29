@@ -67,7 +67,6 @@
         }
 
         document.write(check_out.value);
-        // document.write(statuses[8].innerHTML)
 
         var ReservedRoom = []
         for(var i=0; i<reserved_room.length; i++) ReservedRoom.push(reserved_room[i].textContent)
@@ -91,14 +90,6 @@
         document.write(ReservedIn[1]+', ')
         document.write(ReservedOut[1]+', ')
 
-
-        // var x = check_in.value.replace(/-/g, '');
-        // var y = parseInt(ReservedOut[i].replace(/-/g, ''),10);
-        // document.write(x+' ')
-        // document.write(y+' ')
-        // document.write(check_in.getDate == ReservedIn[1].getDate);
-        // document.write(x > y);
-        // document.write(check_in.getDate > ReservedOut[1].getDate);
         var check_ins = parseInt(check_in.value.replace(/-/g, ''),10);
         var check_outs = parseInt(check_out.value.replace(/-/g, ''),10);
         document.write(check_ins)
@@ -122,26 +113,77 @@
                 ilosc--;
                 i++;
         }
-
-        document.write('</br>'+UnavailableRooms);
-
         // elements = [1, 2, 9, 15].join(',')
         // $.post('{{ route('rooms.index') }}', {elements: elements})
+
+        document.write('</br>'+UnavailableRooms); //Tabela UnavailableRooms = [1,4]
+        var a = [ 'one', 'two', 'three'];
+        var s = JSON.stringify( a );
+        //var gfg = "napis";
+        // var jsonData = $.ajax({
+        //       url: "{{ route('rooms.index') }}",
+        //       data: { 'data' : jsonString},
+        //       dataType:"json", 
+        //           async: false
+        //       }).responseText;
+
+        // Creating a cookie after the document is ready
         
         </script>
 
         <h3>Available rooms</h3>
         <div class="row">
-        <pre id="target-id">Message</pre>
+        <!-- <pre id="target-id">Message</pre>
         <script>
             document.getElementById('target-id').innerHTML = UnavailableRooms;
-        </script>
+        </script> -->
             <div class="col">
                 @forelse ($rooms as $room)
                 <?php
                 echo "Hello World!";
-
+                echo $_COOKIE["gfg"];
+                $UnavailableRooms = $_COOKIE["gfg"];
+                // echo gettype($UnavailableRooms);
+                $UnRooms = explode(",", $UnavailableRooms);
+                // array_unshift($UnRooms, 0);
+                // echo gettype($UnRooms);
+                print_r($UnRooms);
                 ?> 
+                @if(in_array($room->id, $UnRooms))
+                    <?php
+                        $flag = 1;
+                    ?>
+                @else
+                    <?php
+                        $flag = 0;
+                        echo "kotek";
+                    ?>
+                @endif
+                @if($flag == 1)
+                    @continue
+                @endif
+                <script>
+                    $(document).ready(function () {
+                        createCookie("gfg", UnavailableRooms, "1");
+                    });
+                    
+                    // Function to create the cookie
+                    function createCookie(name, value, days) {
+                        var expires;
+                        
+                        if (days) {
+                            var date = new Date();
+                            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                            expires = "; expires=" + date.toGMTString();
+                        }
+                        else {
+                            expires = "";
+                        }
+                        
+                        document.cookie = escape(name) + "=" + 
+                            escape(value) + expires + "; path=/";
+                    }
+                </script>
                     <div class="card mb-3" style="max-width: 740px;">
                         <div class="row g-2">
                             <div class="col-6">
@@ -176,7 +218,7 @@
 
 <script type="text/javascript">
 var disableDates = ["2022-7-13", "2022-7-5","2022-7-10"];
-
+disableDates.push();
 for (let i = 0; i < 1; i++) { 
 
 }

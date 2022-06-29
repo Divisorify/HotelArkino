@@ -24,10 +24,11 @@ class UpdateReservationsRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:reservations,email,'.$this->email,
+            'email' => 'required|email',
             'room_id' => 'required|int',
             'check_in' => 'required|date',
             'check_out' => 'required|date',
+            // 'email' => 'required|unique:reservations,email,'.$this->email,
         ];
     }
 }
