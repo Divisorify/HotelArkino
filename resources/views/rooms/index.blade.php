@@ -222,7 +222,7 @@
 </body>
 
 <script type="text/javascript">
-// var disableDates = ["2022-7-13", "2022-7-5","2022-7-10"];
+var disableDates = ["2022-6-13", "2022-6-5","2022-6-10"];
 disableDates.push();
 for (let i = 0; i < 1; i++) { 
 
