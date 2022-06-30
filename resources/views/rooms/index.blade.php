@@ -48,9 +48,9 @@
         </div>
 
         @foreach($reservations as $reservation)
-        <div class="reserved_room">{{ $reservation->room_id }}</div>
-        <div class="reserved_check_in">{{ $reservation->check_in }}</div>
-        <div class="reserved_check_out">{{ $reservation->check_out }}</div>
+        <div class="reserved_room" style="display: none;">{{ $reservation->room_id }}</div>
+        <div class="reserved_check_in" style="display: none;">{{ $reservation->check_in }}</div>
+        <div class="reserved_check_out" style="display: none;">{{ $reservation->check_out }}</div>
         @endforeach
         <script type="text/javascript">
         var reserved_room = document.getElementsByClassName("reserved_room");
@@ -60,39 +60,39 @@
         var check_in = document.getElementById("check_in");
         var check_out = document.getElementById("check_out");
 
-        var i = 5;
-        while(i>0){
-            document.write(i);
-            i--;
-        }
-
-        document.write(check_out.value);
+        var InIsEmpty = []
+        var OutIsEmpty = []
+        InIsEmpty.push(check_in.value==='');
+        OutIsEmpty = check_out.value==='';
+        // document.write(InIsEmpty);
 
         var ReservedRoom = []
         for(var i=0; i<reserved_room.length; i++) ReservedRoom.push(reserved_room[i].textContent)
         var nameList = ReservedRoom.join()
-        document.write(nameList)
-        document.write('</br>')
+        // document.write(nameList)
+        // document.write('</br>')
 
         var ReservedIn = []
         for(var i=0; i<reserved_check_in.length; i++) ReservedIn.push(reserved_check_in[i].textContent)
         var nameList1 = ReservedIn.join()
-        document.write(nameList1)
-        document.write('</br>')
+        // document.write(nameList1)
+        // document.write('</br>')
 
         var ReservedOut = []
         for(var i=0; i<reserved_check_out.length; i++) ReservedOut.push(reserved_check_out[i].textContent)
         var nameList2 = ReservedOut.join()
-        document.write(nameList2)
-        document.write('</br>')
+        // document.write(nameList2)
+        // document.write('</br>')
 
-        document.write(ReservedRoom[1]+', ')
-        document.write(ReservedIn[1]+', ')
-        document.write(ReservedOut[1]+', ')
+        // document.write(ReservedRoom[1]+', ')
+        // document.write(ReservedIn[1]+', ')
+        // document.write(ReservedOut[1]+', ')
 
         var check_ins = parseInt(check_in.value.replace(/-/g, ''),10);
         var check_outs = parseInt(check_out.value.replace(/-/g, ''),10);
-        document.write(check_ins)
+        // document.write(check_ins)
+        // document.write(check_outs)
+        // document.write(check_ins>check_outs)
         var ilosc = reserved_room.length;
         var i = 0;
         var UnavailableRooms = [];
@@ -100,69 +100,74 @@
             var ReservedIns = parseInt(ReservedIn[i].replace(/-/g, ''),10);
             var ReservedOuts = parseInt(ReservedOut[i].replace(/-/g, ''),10);
             var ReservedRooms = parseInt(ReservedRoom[i],10);
-            document.write('</br>'+ReservedRooms+'\n');
+            // document.write('</br>'+ReservedRooms+'\n');
+            // document.write('</br>'+ReservedIns+'+'+check_ins+'\n');
             // document.write(check_ins>ReservedIns);
-            document.write(i+'.');
-                if (((check_ins < ReservedIns) && (check_outs < ReservedIns)) ||
+            // document.write(i+'.');
+                if(check_in.value==='' ||  check_out.value===''){
+                    // document.write("Zapraszamy"+'\n');
+                }else if (((check_ins < ReservedIns) && (check_outs < ReservedIns)) ||
                     ((check_ins > ReservedOuts) && (check_outs > ReservedOuts))) {
-                document.write("Zapraszamy"+'\n');
+                    // document.write("Zapraszamy"+'\n');
                 }else{
-                    document.write("Zajęte"+'\n');
+                    // document.write("Zajęte"+'\n');
                     UnavailableRooms.push(ReservedRooms);
                 }
                 ilosc--;
                 i++;
         }
-        // elements = [1, 2, 9, 15].join(',')
-        // $.post('{{ route('rooms.index') }}', {elements: elements})
 
-        document.write('</br>'+UnavailableRooms); //Tabela UnavailableRooms = [1,4]
-        var a = [ 'one', 'two', 'three'];
-        var s = JSON.stringify( a );
-        //var gfg = "napis";
-        // var jsonData = $.ajax({
-        //       url: "{{ route('rooms.index') }}",
-        //       data: { 'data' : jsonString},
-        //       dataType:"json", 
-        //           async: false
-        //       }).responseText;
-
-        // Creating a cookie after the document is ready
-        
+        // document.write('</br>'+UnavailableRooms);     
         </script>
 
         <h3>Available rooms</h3>
         <div class="row">
-        <!-- <pre id="target-id">Message</pre>
-        <script>
-            document.getElementById('target-id').innerHTML = UnavailableRooms;
-        </script> -->
             <div class="col">
                 @forelse ($rooms as $room)
                 <?php
-                echo "Hello World!";
-                echo $_COOKIE["gfg"];
+                // echo $_COOKIE["inisempty"];
+                $InIsEmpty = $_COOKIE["inisempty"];
+                // echo $InIsEmpty;
+                $InIsEmpty = explode(",", $InIsEmpty);
+
+                // echo $_COOKIE["outisempty"];
+                $OutIsEmpty = $_COOKIE["outisempty"];
+                // echo $OutIsEmpty;
+                $OutIsEmpty = explode(",", $OutIsEmpty);
+
+                // echo $_COOKIE["gfg"];
                 $UnavailableRooms = $_COOKIE["gfg"];
-                // echo gettype($UnavailableRooms);
                 $UnRooms = explode(",", $UnavailableRooms);
-                // array_unshift($UnRooms, 0);
                 // echo gettype($UnRooms);
-                print_r($UnRooms);
+
+                if($InIsEmpty=='true' || $OutIsEmpty=='true'){
+                    echo "kotek";
+                    goto a;
+                }
                 ?> 
                 @if(in_array($room->id, $UnRooms))
+                
                     <?php
                         $flag = 1;
                     ?>
                 @else
                     <?php
+                        a:
                         $flag = 0;
-                        echo "kotek";
                     ?>
                 @endif
                 @if($flag == 1)
                     @continue
                 @endif
                 <script>
+                    $(document).ready(function () {
+                        createCookie("inisempty", InIsEmpty, "1");
+                    });
+
+                    $(document).ready(function () {
+                        createCookie("outisempty", OutIsEmpty, "1");
+                    });
+
                     $(document).ready(function () {
                         createCookie("gfg", UnavailableRooms, "1");
                     });
@@ -217,12 +222,12 @@
 </body>
 
 <script type="text/javascript">
-var disableDates = ["2022-7-13", "2022-7-5","2022-7-10"];
+// var disableDates = ["2022-7-13", "2022-7-5","2022-7-10"];
 disableDates.push();
 for (let i = 0; i < 1; i++) { 
 
 }
-document.write(disableDates)
+// document.write(disableDates)
 
 
 $('.datepicker').datepicker({

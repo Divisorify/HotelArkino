@@ -27,8 +27,15 @@ class RoomTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        $request->validate([
+            'type' => 'required|unique:roomtypes,type,'.$id,
+            'persons' => 'required|numeric',
+            'beds' => 'required|numeric',
+            'description' => 'required|string|max:250',
+            'price' => 'required|string',
+        ]);
     }
 
     /**

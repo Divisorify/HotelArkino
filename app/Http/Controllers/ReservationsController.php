@@ -70,8 +70,8 @@ class ReservationsController extends Controller
      */
     public function edit(Reservations $reservation)
     {
-        $rooms = Room::all();
-        return view('reservations.create_or_edit', ['reservation' => $reservation, 'rooms' => $rooms]);
+        $room = Room::all();
+        return view('reservations.create_or_edit', ['reservation' => $reservation, 'room' => $room]);
     }
 
     /**

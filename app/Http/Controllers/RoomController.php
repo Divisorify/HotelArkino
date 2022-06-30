@@ -66,6 +66,14 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
+        $request->validate([
+            'type' => 'required|string',
+            'persons' => 'required|string|max:20',
+            'beds' => 'required|string|max:20',
+            'area' => 'required|int',
+            'price' => 'required|int',
+        ]);
+        
         Room::create(['type' => $request['type'], 'persons' => $request['persons'], 'beds' => $request['beds'], 'area' => $request['area'], 'price' => $request['price']]);
 
         return redirect('/rooms');
