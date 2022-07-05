@@ -63,7 +63,7 @@
           <div class="card-body">
             <h5 class="card-title">{{$roomtype->type}}</h5>
             <p class="card-text">{{$roomtype->description}}</p>
-            <a href="{{route('roomtypes.show', $roomtype->id)}}" class="btn btn-primary">More details...</a>
+            <!-- <a href="{{route('roomtypes.show', $roomtype->id)}}" class="btn btn-primary">More details...</a> -->
           </div>
         </div>
       </div>
