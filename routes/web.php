@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\DB;
 
 // Strona główna zwraca domyślną stronę laravela
 Route::get('/', function () {
-    return view('welcome');
+    $roomtypesCards = RoomType::with('room')->orderBy('id')->limit(6)->get();
+        $allRoomTypes = RoomType::with('room')->orderBy('id')->get();
+    return view('roomtypes.index', ['roomtypesCards' => $roomtypesCards, 'roomtypes' => $allRoomTypes]);
 });
 
 Route::get('/test', function () {

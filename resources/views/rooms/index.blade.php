@@ -147,9 +147,9 @@
                 ?> 
                 @if(in_array($room->id, $UnRooms))
                 
-                    <?php
-                        $flag = 1;
-                    ?>
+                <?php
+                    $flag = 1;
+                ?>
                 @else
                     <?php
                         a:
@@ -161,15 +161,15 @@
                 @endif
                 <script>
                     $(document).ready(function () {
-                        createCookie("inisempty", InIsEmpty, "1");
+                        createCookie("inisempty", InIsEmpty, "10000");
                     });
 
                     $(document).ready(function () {
-                        createCookie("outisempty", OutIsEmpty, "1");
+                        createCookie("outisempty", OutIsEmpty, "10000");
                     });
 
                     $(document).ready(function () {
-                        createCookie("gfg", UnavailableRooms, "1");
+                        createCookie("gfg", UnavailableRooms, "10000");
                     });
                     
                     // Function to create the cookie
