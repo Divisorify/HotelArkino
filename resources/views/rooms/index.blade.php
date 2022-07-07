@@ -126,7 +126,19 @@
                 @forelse ($rooms as $room)
                 <?php
                 // echo $_COOKIE["inisempty"];
-                $InIsEmpty = $_COOKIE["inisempty"];
+                try{
+                    $InIsEmpty = $_COOKIE["inisempty"];
+                }catch(Exception $e){
+                    //echo  $e->getMessage(), "\n";
+                    goto a;
+                }
+                // if(isset($InIsEmpty)){
+                //     echo $InIsEmpty;
+                // }else{
+                //     echo 'No Place Set';
+                // }
+
+                // echo $InIsEmpty;
                 // echo $InIsEmpty;
                 $InIsEmpty = explode(",", $InIsEmpty);
 
@@ -141,7 +153,6 @@
                 // echo gettype($UnRooms);
 
                 if($InIsEmpty=='true' || $OutIsEmpty=='true'){
-                    echo "kotek";
                     goto a;
                 }
                 ?> 
