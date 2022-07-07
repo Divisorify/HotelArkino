@@ -132,14 +132,7 @@
                     //echo  $e->getMessage(), "\n";
                     goto a;
                 }
-                // if(isset($InIsEmpty)){
-                //     echo $InIsEmpty;
-                // }else{
-                //     echo 'No Place Set';
-                // }
 
-                // echo $InIsEmpty;
-                // echo $InIsEmpty;
                 $InIsEmpty = explode(",", $InIsEmpty);
 
                 // echo $_COOKIE["outisempty"];
