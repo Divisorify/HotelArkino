@@ -16,9 +16,14 @@
         @endcan
 
         <div class="container">
+            @if (Auth::check())
             <h1>Make Reservation</h1>
+            @else
+            <h1>Our Rooms</h1>
+            @endif
             <form class='container my-3' method="POST" action="{{ route('reservations.store') }}">
                 @csrf
+                @if (Auth::check())
                 <div class="form-group mb-2">
                     <label for="email">Email</label>
                     <input id="email" name="email" type="text" class="@error('email') is-invalid @else is-valid @enderror">
@@ -29,6 +34,7 @@
                     <input id="room_id" name="room_id" type="text" class="@error('room_id') is-invalid @else is-valid @enderror">
                     <div class="invalid-feedback">Invalid value!</div>
                 </div>
+                @endif
                 <div class="form-group mb-2">
                     <label for="check_in">Check_in</label>
                     <input id="check_in" name="check_in" class="form-control datepicker"
@@ -204,9 +210,9 @@
                                     <p class="card-text">Beds: {{$room->beds}}</p>
                                     <p class="card-text">Residents: {{$room->persons}}</p>
                                     <p class="card-text">Area: {{$room->area}} m<sup>2</sup></p>
-                                    @if (Auth::check())
+                                    <!-- @if (Auth::check())
                                     <a href="{{route('reservations.create', $room->id)}}" class="btn btn-danger">Reserve</a>
-                                    @endif
+                                    @endif -->
                                     @can('is-admin')
                                     <a class="btn-primary btn block ml-5" style="width: 10rem"
                                         href="{{ route('rooms.edit', $room->id) }}">Edit room</a>
