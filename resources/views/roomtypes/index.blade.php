@@ -132,12 +132,14 @@
                 <label for="roomtype" class="col-sm-2 col-form-label">Room Type</label>
                 <div class="col-sm-10">
                 <select class="form-select" aria-label="Default select example">
-                  <option value="1">Classic</option>
-                  <option value="2">Studio</option>
+                  @foreach($roomtypes as $roomtype)
+                  <option value="1">{{$roomtype->type}}</option>
+                  <!-- <option value="2">Studio</option>
                   <option value="3">Superior</option>
                   <option value="4">Master</option>
                   <option value="5">Family</option>
-                  <option value="6">Presidental</option>
+                  <option value="6">Presidental</option> -->
+                  @endforeach
                 </select>
                     <input @isset($offer) value={{ $offer->roomtype }} @endisset id="roomtype" name="roomtype"
                     type="text" class="form-select @error('roomtype') is-invalid @else is-valid @enderror">
