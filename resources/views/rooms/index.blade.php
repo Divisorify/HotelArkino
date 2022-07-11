@@ -9,9 +9,14 @@
     <div class="container">
         <!-- <h1>Choose your room</h1> -->
         @can('is-admin')
-        <div class="row">
+        <div class="row-my-2">
             <a class="btn-primary btn my-5 block ml-5" style="width: 10rem"
                 href="{{ route('rooms.create') }}">Add new room</a>
+            <a class="btn-primary btn my-5 block ml-5" style="width: 10rem"
+                href="{{ route('roomtypes.create') }}">Add new roomtype</a>
+        </div>
+        <div class="row">
+            
         </div>
         @endcan
 

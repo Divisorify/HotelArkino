@@ -6,6 +6,8 @@ use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRoomTypeRequest;
+use App\Http\Requests\UpdateRoomTypeRequest;
 
 class RoomTypeController extends Controller
 {
@@ -16,9 +18,14 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        $roomtypesCards = RoomType::with('room')->orderBy('id')->limit(6)->get();
-        $allRoomTypes = RoomType::with('room')->orderBy('id')->get();
-        return view('roomtypes.index', ['roomtypesCards' => $roomtypesCards, 'roomtypes' => $allRoomTypes]);
+        $roomtypesCards = RoomType::with('room')->orderBy('id')->get();
+        $roomtypes = RoomType::with('room')->orderBy('id')->get();
+        return view('roomtypes.index', ['roomtypesCards' => $roomtypesCards, 'roomtypes' => $roomtypes]);
+    }
+
+    public function create()
+    {
+        return view('roomtypes.create_or_edit');
     }
 
     /**
@@ -27,15 +34,23 @@ class RoomTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(StoreRoomTypeRequest $request)
     {
         $request->validate([
-            'type' => 'required|unique:roomtypes,type,'.$id,
+            // 'type' => 'required|unique:roomtypes,type,'.$id,
+            'type' => 'required|unique:roomtypes,type,',
             'persons' => 'required|numeric',
-            'beds' => 'required|numeric',
+            'beds' => 'required|string|max:30',
             'description' => 'required|string|max:250',
             'price' => 'required|string',
+            'room_id' => 'required|numeric',
         ]);
+        
+        // $roomId = Room::where('type', '=', $request->get('room'))->first(['id'])->id;
+
+        RoomType::create(['type' => $request['type'], 'persons' => $request['persons'], 'beds' => $request['beds'], 'description' => $request['description'], 'price' => $request['price'], 'room_id' => $request['room_id']]);
+
+        return redirect('/roomtypes');
     }
 
     /**

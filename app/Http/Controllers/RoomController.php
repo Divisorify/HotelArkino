@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Reservations;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -21,31 +22,10 @@ class RoomController extends Controller
     {
         // Pobranie danych z bazy danych
         $rooms = Room::all();
+        $roomtype = RoomType::all();
         $reservations = Reservations::all();
         // Zwrócenie widoku(przekazujemy dane ze zmiennej $countries)
-        return view('rooms.index', ['rooms' => $rooms], ['reservations' => $reservations]);
-
-        // if (!Gate::allows('find_room_access')) {
-        //     return abort(401);
-        // }
-        // $time_from = $request->input('time_from');
-        // $time_to = $request->input('time_to');
-
-
-        // if ($request->isMethod('POST')) {
-        //       $rooms = Room::whereNotIn('id', function($query) use ($time_from, $time_to) {
-        //     $query->from('reservations')
-        //         ->select('room_id')
-        //         ->where('time_from', '<=', $time_to)
-        //         ->where('time_to', '>=', $time_from);
-        // })->get();
-        // } else {
-        //     $rooms = null;
-        // }
-
-
-        //return view('rooms.index', compact('rooms', 'time_from', 'time_to'));
-    
+        return view('rooms.index', ['rooms' => $rooms], ['reservations' => $reservations], ['roomtypes' => $roomtype]);
     }
 
     /**

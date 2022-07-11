@@ -64,17 +64,6 @@
                     <div class="invalid-feedback">Incorrect value!</div>
                 </div>
             </div>
-            <!-- <div class="row mb-3">
-                <label for="room" class="col-sm-2 col-form-label">Room</label>
-                <div class="col-sm-10">
-                    <select class="form-select" name="room" id="room">
-                        @foreach ($rooms as $room)
-                            <option class="form-control" value="{{ $room->type }}">{{ $room->type }}</option>
-                        @endforeach
-                    </select>
-                    <div class="invalid-feedback">Incorrect value!</div>
-                </div>
-            </div> -->
             <input class="btn btn-primary" type="submit" value="Send">
         </form>
     </div>

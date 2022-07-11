@@ -10,7 +10,7 @@ class RoomType extends Model
     use HasFactory;
     public $table = "roomtypes";
 
-    protected $fillable = ['type', 'persons', 'beds', 'description', 'price'];
+    protected $fillable = ['type', 'persons', 'beds', 'description', 'price', 'room_id'];
 
     // protected $attributes = [
     //     'period' => 7,

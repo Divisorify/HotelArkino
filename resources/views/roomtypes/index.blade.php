@@ -200,7 +200,8 @@
 </body>
 
 <script type="text/javascript">
-var disableDates = ["2022-6-13", "2022-6-25","2022-6-27"];
+var disableDates = [];
+// "2022-6-13", "2022-6-25","2022-6-27"
 
 for (let i = 0; i < 1; i++) { 
 
